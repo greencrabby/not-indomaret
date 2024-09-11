@@ -1,7 +1,7 @@
 # not-indomaret
 
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-## Membuat sebuah proyek Django baru
+### Membuat sebuah proyek Django baru
 1. Membuat direktori baru untuk proyek Django baru.
 2. Buka command prompt di direktori tersebut dan jalankan perintah `python -m venv env` untuk membuat virtual environment untuk Python. Environment akan mengisolasi package dan *dependencies* dari aplikasi sehingga tidak konflik dengan versi lain.
 3. Mengaktifkan virtual environment dengan menjalankan perintah `env\Scripts\activate.bat` (windows).
@@ -17,12 +17,12 @@
 7. Buka kembali command prompt dan jalankan perintah `python manage.py runserver` dan buka http://localhost:8000 untuk melihat apakah aplikasi Django berhasil dibuat.
 8. Hentikan server dengan menekan `Ctrl+C` di command prompt dan jalankan perintah `deactivate` untuk mematikan virtual environment. Push hasil perubahan ke GitHub.
 
-## Membuat aplikasi dengan nama main pada proyek tersebut.
+### Membuat aplikasi dengan nama main pada proyek tersebut.
 1. Mengaktifkan virtual environment dengan perintah `env\Scripts\activate.bat` (windows).
 2. Jalankan perintah `python manage.py startapp main` untuk membuat aplikasi baru dengan nama main.
 3. Buka berkas settings.py di dalam proyek Django yang dibuat dan tambahkan `'main'` di variabel `INSTALLED_APPS`. 
 
-## Melakukan routing pada proyek agar dapat menjalankan aplikasi main.
+### Melakukan routing pada proyek agar dapat menjalankan aplikasi main.
 1. Membuat berkas dengan nama `urls.py` di dalam direktori `main` dan isi dengan kode berikut untuk mengatur rute URL:
 ```python
 from django.urls import path
@@ -45,7 +45,7 @@ urlpatterns = [
 ```
 `main/` akan diarahkan ke rute yang didefinisikan dalam berkas `urls.py` pada aplikasi `main`.
 
-## Membuat model pada aplikasi main dengan nama Product dan memiliki atribut wajib sebagai berikut.
+### Membuat model pada aplikasi main dengan nama Product dan memiliki atribut wajib sebagai berikut.
 1. Buka file `models.py` dan isi file dengan nama dan atribut yang diminta.
 2. Berdasarkan ketentuan soal, file minimal harus memiliki isi sebagai berikut:
 ```python
@@ -58,7 +58,7 @@ class Product(models.Model):
 ```
 3. Jalankan perintah `python manage.py makemigrations` dan `python manage.py migrate` untuk mengaplikasikan perubahan model.
 
-## Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
+### Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
 1. Buka file `views.py` di dalam direktori `main`.
 2. Tambahkan kode berikut ke dalam file.
 ```python 
@@ -82,7 +82,7 @@ def show_main(request):
 <p>{{ class }}<p>
 ```
 
-## Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
+### Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
 1. Membuat berkas dengan nama `urls.py` di dalam direktori `main` dan isi dengan kode berikut untuk mengatur rute URL:
 ```python
 from django.urls import path
@@ -96,7 +96,7 @@ urlpatterns = [
 ```
 
 
-## Melakukan deployment ke aplikasi PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
+### Melakukan deployment ke aplikasi PWS terhadap aplikasi yang sudah dibuat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
 1. Buka web PWS dan buat akun melalui akun GitHub. 
 2. Setelah login, tekan tombol `Create New Project`.
 3. Tambahkan "joshua-elisha-notindomaret.pbp.cs.ui.ac.id" pada `ALLOWEDHOST` .
