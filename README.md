@@ -106,18 +106,23 @@ urlpatterns = [
 ## Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
 `urls.py`:
 File ini bertindak sebagai "router" untuk aplikasi. urls.py memetakan pola URL ke fungsi atau kelas tampilan (view) yang sesuai. Ketika pengguna membuat permintaan, Django menggunakan urls.py untuk menentukan tampilan mana yang harus menangani permintaan tersebut.
+
 `views.py`:
 Views adalah "pengontrol" dalam pola MVC (Model-View-Controller). View memproses permintaan, berinteraksi dengan model untuk mengambil atau mengubah data, dan menentukan respons apa yang harus dikirim kembali. Jika sebuah view perlu menampilkan data kepada pengguna, biasanya view tersebut akan me-render template HTML.
+
 `models.py`:
 Model mendefinisikan struktur data dalam basis data. Model mewakili "lapisan data" dari aplikasi. View berinteraksi dengan model untuk mengambil atau memanipulasi data, dan metode pada model membantu untuk melakukan query pada basis data dengan cara yang lebih abstrak.
+
 `HTML`:
 File HTML (atau template) adalah apa yang akhirnya dilihat oleh pengguna. View mengambil data (seringkali dari model) dan me-render-nya ke dalam template HTML, yang kemudian dikirim kembali sebagai respons. Template juga dapat menyertakan konten dinamis dengan menggunakan tag template Django.
 
 ## Jelaskan fungsi git dalam pengembangan perangkat lunak!
 ### Kontrol Versi:
 Git melacak perubahan kode sumber seiring waktu. Setiap perubahan dapat "di-commit," menciptakan snapshot proyek pada saat itu, memungkinkan pengembang untuk membandingkan versi dan kembali ke status sebelumnya jika diperlukan.
+
 ### Kolaborasi:
 Git memungkinkan beberapa pengembang bekerja pada proyek yang sama secara bersamaan dengan menggunakan cabang (branch). Cabang ini bisa digabungkan (merge) saat pekerjaan selesai.
+
 ### Branching:
 Branching memungkinkan pengembang membuat jalur pengembangan terpisah untuk fitur baru, perbaikan bug, atau eksperimen tanpa mengganggu kode utama. Setelah selesai, cabang ini dapat digabungkan kembali ke cabang utama.
 
