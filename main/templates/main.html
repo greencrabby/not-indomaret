@@ -1,6 +1,41 @@
-<h1>{{ nama_aplikasi }}</h1>
+{% extends 'base.html' %}
+{% block content %}
 
-<h5>Nama: </h5>
-<p>{{ nama }}</p>
-<h5>Kelas: </h5>
-<p>{{ kelas }}</p>
+<h1>{{ app_name }}</h1>
+
+
+<h5>NPM: </h5>
+<p>{{ npm }}<p>
+
+<h5>Name:</h5>
+<p>{{ name }}</p>
+
+<h5>Class:</h5>
+<p>{{ class }}</p>
+
+{% if not product_entries %}
+<p>Belum ada data product pada {{app_name}}.</p>
+{% else %}
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Price</th>
+    <th>Description</th>
+  </tr>
+
+  {% for product_entry in product_entries %}
+  <tr>
+    <td>{{product_entry.name}}</td>
+    <td>{{product_entry.price}}</td>
+    <td>{{product_entry.description}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_product_entry' %}">
+  <button>Add New Product Entry</button>
+</a>
+{% endblock content %}
