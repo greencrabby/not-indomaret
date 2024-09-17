@@ -9,9 +9,10 @@ def show_main(request):
     product_entries = ProductEntry.objects.all()
 
     context = {
-        'nama_aplikasi' : 'Not Indomaret',
-        'nama': 'Joshua Elisha Shalom Soedarmintarto',
-        'kelas': 'PBP E',
+        'app_name' : 'Not Indomaret',
+        'npm': '2306275001',
+        'name': 'Joshua Elisha Shalom Soedarmintarto',
+        'class': 'PBP E',
         'product_entries': product_entries,
     }
 

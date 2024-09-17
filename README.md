@@ -1,11 +1,13 @@
 # not-indomaret
 
+# ---TUGAS 2---
+
 ## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 ### Membuat sebuah proyek Django baru
 1. Membuat direktori baru untuk proyek Django baru.
 2. Buka command prompt di direktori tersebut dan jalankan perintah `python -m venv env` untuk membuat virtual environment untuk Python. Environment akan mengisolasi package dan *dependencies* dari aplikasi sehingga tidak konflik dengan versi lain.
 3. Mengaktifkan virtual environment dengan menjalankan perintah `env\Scripts\activate.bat` (windows).
-4. Buat file dengn nama `requirements.txt` di direktori yang sama dan isi dengan *dependencies* berikut:
+4. Buat file dengan nama `requirements.txt` di direktori yang sama dan isi dengan *dependencies* berikut:
 `django`
 `gunicorn`
 `whitenoise`
@@ -20,10 +22,10 @@
 ### Membuat aplikasi dengan nama main pada proyek tersebut.
 1. Mengaktifkan virtual environment dengan perintah `env\Scripts\activate.bat` (windows).
 2. Jalankan perintah `python manage.py startapp main` untuk membuat aplikasi baru dengan nama main.
-3. Buka berkas settings.py di dalam proyek Django yang dibuat dan tambahkan `'main'` di variabel `INSTALLED_APPS`. 
+3. Buka file `settings.py` di dalam proyek Django yang dibuat dan tambahkan `'main'` di variabel `INSTALLED_APPS`. 
 
 ### Melakukan routing pada proyek agar dapat menjalankan aplikasi main.
-1. Membuat berkas dengan nama `urls.py` di dalam direktori `main` dan isi dengan kode berikut untuk mengatur rute URL:
+1. Membuat file dengan nama `urls.py` di dalam direktori `main` dan isi dengan kode berikut untuk mengatur rute URL:
 ```python
 from django.urls import path
 from main.views import show_main
@@ -35,7 +37,7 @@ urlpatterns = [
 ]
 ```
 show_main digunakan sebagai tampilan ketika URL yang terkait diakses dan app_name sebagai nama unik pada pola URL aplikasi.
-2. Buka berkas `urls.py` di direktori proyek Django dan bukan `urls.py` di direktori `main` dan tambahkan rute URL seperti berikut:
+2. Buka file `urls.py` di direktori proyek Django dan bukan `urls.py` di direktori `main` dan tambahkan rute URL seperti berikut:
 ```python
 urlpatterns = [
     ...
@@ -43,7 +45,7 @@ urlpatterns = [
     ...
 ]
 ```
-`main/` akan diarahkan ke rute yang didefinisikan dalam berkas `urls.py` pada aplikasi `main`.
+`main/` akan diarahkan ke rute yang didefinisikan dalam file `urls.py` pada aplikasi `main`.
 
 ### Membuat model pada aplikasi main dengan nama Product dan memiliki atribut wajib sebagai berikut.
 1. Buka file `models.py` dan isi file dengan nama dan atribut yang diminta.
@@ -83,7 +85,7 @@ def show_main(request):
 ```
 
 ### Membuat sebuah routing pada urls.py aplikasi main untuk memetakan fungsi yang telah dibuat pada views.py.
-1. Membuat berkas dengan nama `urls.py` di dalam direktori `main` dan isi dengan kode berikut untuk mengatur rute URL:
+1. Membuat file dengan nama `urls.py` di dalam direktori `main` dan isi dengan kode berikut untuk mengatur rute URL:
 ```python
 from django.urls import path
 from main.views import show_main
@@ -134,3 +136,212 @@ Menurut saya, Django dijadikan framework permulaan dikarenakan Django cukup sede
 
 ## Mengapa model pada Django disebut sebagai ORM?
 Model pada Django disebut sebagai ORM karena mereka memungkinkan pengembang untuk bekerja dengan data dari basis data relasional menggunakan objek-objek Python, mengabstraksi detail-detail SQL dan menyediakan cara yang lebih intuitif dan aman untuk mengelola data dalam aplikasi.
+
+# ---TUGAS 3---
+
+## Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Data delivery sangat penting dalam implementasi platform untuk memastikan komunikasi yang efisien antar komponen, dengan transfer data yang tepat waktu dan sinkronisasi. Hal ini membuat data delivery lebih time efficient dan juga tentunya setiap komponen dapat sinkron. Kemudian data delivery juga memastikan integritas data sehingga memungkinkan platform untuk berkembang tanpa mengorbankan kinerja.
+
+## Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+Menurut saya, JSON lebih baik dikarenakan data yang ditampilkan lebih mudah untuk dipahami dibandingkand engan format XML. JSON lebih populer daripada XML karena lebih sederhana, ringkas, dan mudah dipahami. Parsing JSON lebih cepat dan efisien, dengan ukuran data yang lebih kecil, serta dukungan luas di berbagai bahasa pemrograman. Ini membuat JSON lebih cocok untuk aplikasi web dan API modern.
+
+## Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+Method is_valid() memastikan input yang diberikan valid, dengan cara periksa input setelah form ter-submit. Hal ini dibutuhkan karena data yang di-input harus dipastikan sudah benar, sehingga memiliki efek samping seperti memberi proteksi terhadap SQL injection sehingga dipastikan bahwa input adalah yang diinginkan.
+
+## Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+Dalam Django, csrf_token penting untuk melindungi form dari serangan Cross-Site Request Forgery (CSRF). Tanpanya, penyerang bisa memanipulasi pengguna untuk mengirim form tanpa disadari, memungkinkan tindakan tidak sah seperti perubahan data atau pembelian. Token ini memastikan form dikirim dari sumber yang tepercaya.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+### Membuat input form untuk menambahkan objek model pada app sebelumnya.
+1. Membuat direktori baru `templates` dengan file `base.html` dengan isi berikut:
+```html
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %} {% endblock meta %}
+  </head>
+
+  <body>
+    {% block content %} {% endblock content %}
+  </body>
+</html>
+```
+2. Buka file `settings.py` dalam direktori `not_indomaret` kemudian menambahkan kode berikut:
+```python
+...
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'], # Tambahkan konten baris ini
+        'APP_DIRS': True,
+        ...
+    }
+]
+...
+```
+3. Buka file `models.py` dalam direktori `main` kemudian menambahkan kode berikut:
+```python
+import uuid  # tambahkan baris ini di paling atas
+...
+class ProductEntry(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255)
+    price = models.IntegerField()
+    description = models.TextField()
+...
+```
+Lalu juga melakukan migrasi model dengan cara
+```
+python manage.py makemigrations
+python manage.py migrate
+```
+4. Membuat file `forms.py` dalam direktori `main` dan diisi dengan kode berikut:
+```python
+from django.forms import ModelForm
+from main.models import ProductEntry
+
+class ProductEntryForm(ModelForm):
+    class Meta:
+        model = ProductEntry
+        fields = ["name", "price", "description"]
+```
+5. Buka file `views.py` dalam direktori `main` kemudian menambahkan kode berikut:
+```python
+from django.shortcuts import render, redirect 
+from main.forms import ProductEntryForm
+from main.models import ProductEntry
+
+...
+def create_product_entry(request):
+    form = ProductEntryForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return redirect('main:show_main')
+
+    context = {'form': form}
+    return render(request, "create_product_entry.html", context)
+```
+Juga update fungsi `show_main` menjadi seperti berikut:
+```python
+def show_main(request):
+    product_entries = ProductEntry.objects.all()
+
+    context = {
+        'nama_aplikasi' : 'Not Indomaret',
+        'nama': 'Joshua Elisha Shalom Soedarmintarto',
+        'kelas': 'PBP E',
+        'product_entries': product_entries,
+    }
+
+    return render(request, "main.html", context)
+```
+6. Buka file `urls.py` dalam direktori `main` kemudian menambahkan kode berikut:
+```python
+from django.urls import path
+from main.views import show_main, create_product_entry
+
+urlpatterns = [
+   ...
+    path('create-product-entry', create_product_entry, name='create_product_entry'),
+]
+```
+7. Buat file `create_product_entry.html` dalam direktori `main/templates` dengan isi kode:
+```python
+{% extends 'base.html' %} 
+{% block content %}
+<h1>Add New Product Entry</h1>
+
+<form method="POST">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+    <tr>
+      <td></td>
+      <td>
+        <input type="submit" value="Add Mood Entry" />
+      </td>
+    </tr>
+  </table>
+</form>
+
+{% endblock %}
+```
+8. Buka file `main.html` dalam direktori `main/templates` kemudian menambahkan kode berikut:
+```html
+...
+{% if not product_entries %}
+<p>Belum ada data product pada {{app_name}}.</p>
+{% else %}
+<table>
+  <tr>
+    <th>Product Name</th>
+    <th>Price</th>
+    <th>Description</th>
+  </tr>
+
+  {% for product_entry in product_entries %}
+  <tr>
+    <td>{{product_entry.name}}</td>
+    <td>{{product_entry.price}}</td>
+    <td>{{product_entry.description}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+<br />
+
+<a href="{% url 'main:create_product_entry' %}">
+  <button>Add New Product Entry</button>
+</a>
+{% endblock content %}
+```
+
+### Tambahkan 4 fungsi views baru untuk melihat objek yang sudah ditambahkan dalam format XML, JSON, XML by ID, dan JSON by ID.
+Buka file `views.py` dalam direktori `main` kemudian tambahkan kode berikut:
+```py
+...
+from django.http import HttpResponse
+from django.core import serializers
+...
+
+def show_xml(request):
+    data = ProductEntry.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json(request):
+    data = ProductEntry.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_xml_by_id(request, id):
+    data = ProductEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+def show_json_by_id(request, id):
+    data = ProductEntry.objects.filter(pk=id)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+```
+
+### Membuat routing URL untuk masing-masing views yang telah ditambahkan pada poin 2.
+Buka file `urls.py` dalam direktori `main` kemudian tambahkan kode berikut:
+```python
+from django.urls import path
+from main.views import show_main, create_product_entry, show_xml, show_json, show_xml_by_id, show_json_by_id
+
+app_name = 'main'
+
+urlpatterns = [
+    path('', show_main, name='show_main'),
+    path('create-product-entry', create_product_entry, name='create_product_entry'),
+    path('xml/', show_xml, name='show_xml'),
+    path('json/', show_json, name='show_json'),
+    path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+    path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+]
+```
+
+### Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
