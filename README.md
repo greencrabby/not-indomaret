@@ -345,3 +345,11 @@ urlpatterns = [
 ```
 
 ### Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+1. XML view
+<img src="readmeassets/xml_view.png">
+2. JSON view
+<img src="readmeassets/json_view.png">
+3. XML ID view
+<img src="readmeassets/xml_id_view.png">
+4. JSON ID view
+<img src="readmeassets/json_id_view.png">
