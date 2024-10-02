@@ -649,8 +649,7 @@ urlpatterns = [
    path('delete/<uuid:id>', delete_product, name='delete_product'),
 ]
 ```
-
-3. Buka file `main.htnl` dalam direktori `main/templates` dan tambahkan kode berikut:
+3. Buka file `main.html` dalam direktori `main/templates` dan tambahkan kode berikut:
 ```html
 ...
 <tr>
@@ -671,7 +670,42 @@ urlpatterns = [
     </td>
 </tr>
 ```
+4. Buat file `edit_product.html` dalam direktori `main/templates` dan isi dengan kode berikut:
+```html
+{% extends 'base.html' %}
+{% load static %}
+{% block meta %}
+<title>Edit Product</title>
+{% endblock meta %}
 
+{% block content %}
+<div class="flex items-center justify-center min-h-screen bg-gray-900">
+  <div class="w-full max-w-md p-8 space-y-6 bg-gray-800 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center text-gray-200">Edit Product</h1>
+
+    <form method="POST" action="" class="space-y-4">
+      {% csrf_token %}
+      <div class="form-group space-y-4">
+        {% for field in form %}
+          <div class="mb-4">
+            <label for="{{ field.id_for_label }}" class="block mb-1 font-semibold text-gray-300">{{ field.label }}</label>
+            <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}"
+                   class="w-full px-3 py-2 bg-gray-700 text-gray-200 border border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                   value="{{ field.value|default_if_none:'' }}" />
+            {% if field.errors %}
+              <div class="text-red-400 text-sm">{{ field.errors }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="form-group">
+        <input class="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-400" type="submit" value="Edit Product" />
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock content %}
+```
 ### Kustomisasi desain pada template HTML yang telah dibuat pada tugas-tugas sebelumnya menggunakan CSS atau CSS framework (seperti Bootstrap, Tailwind, Bulma) dengan ketentuan sebagai berikut:
 Add tailwind ke aplikasi dengan cara:
 1. Buka file `base.html` dalam direktori `templates` dan tambahkan kode berikut:
