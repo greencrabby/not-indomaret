@@ -1,0 +1,72 @@
+/* Global Body Background */
+body {
+    background-color: #1a202c; /* Dark background color */
+    color: #f7fafc; /* Light text color for contrast */
+    font-family: Arial, sans-serif; /* Set a clean font */
+}
+
+/* Form Styles */
+.form-style form input,
+.form-style form textarea,
+.form-style form select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #bcbcbc; /* Border color */
+    border-radius: 0.375rem;
+    background-color: #2d3748; /* Darker input background */
+    color: #e2e8f0; /* Light text color for inputs */
+}
+
+.form-style form input:focus,
+.form-style form textarea:focus,
+.form-style form select:focus {
+    outline: none;
+    border-color: #674ea7; /* Focus border color */
+    box-shadow: 0 0 0 3px #674ea7; /* Focus shadow */
+}
+
+/* Card Animation */
+@keyframes shine {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.animate-shine {
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.3));
+    background-size: 200% 100%;
+    animation: shine 3s infinite;
+}
+
+/* Card Styles */
+.card {
+    background-color: #2d3748; /* Darker card background */
+    border: 2px solid #4a5568; /* Card border */
+    border-radius: 0.5rem; /* Rounded corners */
+    padding: 1rem; /* Padding inside card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation on hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Button Styles */
+.btn {
+    background-color: #4c51bf; /* Button background */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 0.375rem; /* Rounded corners */
+    padding: 0.5rem 1rem; /* Padding */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Transition for background */
+}
+
+.btn:hover {
+    background-color: #434190; /* Darker button background on hover */
+}
